@@ -36,7 +36,7 @@ function draw() {
     b = random(255);
   }
 
-  // If I press space, then draw remember
+  // If I press space, then remember drawn places
   if (keyIsDown(32)) {
     drawingArr.push({
       x,
