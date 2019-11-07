@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Playing with p5.js</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="playing-with-p5js">Playing with p5.js</h1>
+<h2 id="requirements-and-dependencies-mainly-for-workshop-helpers">Requirements and Dependencies (Mainly for workshop helpers)</h2>
+<ul>
+<li>p5.js</li>
+<li>Glitch</li>
+</ul>
+<p>Glitch is a platform for creating demo and prototype of Javascript application. It will be the main tool used by us for this workshop.</p>
+<p>To set it up, first go to the url provided on <a href="https://glitch.com/">Glitch</a>.</p>
+<p>You should see a project page with preexisting code like this:</p>
+<p><img src="file:///c:\Users\Lenovo\Documents\My Documents\ReLearnInitiative\Workshops\Playing_w_p5.js\doc_media\glitch_screen1.png" alt="Glitch starting"></p>
+<p>Click on the <code>Remix to Edit</code> button on the upper right.</p>
+<p><img src="file:///c:\Users\Lenovo\Documents\My Documents\ReLearnInitiative\Workshops\Playing_w_p5.js\doc_media\glitch_screen2.png" alt="Glitch Remix to Edit"></p>
+<p>After clicking the button, Glitch would load for a brief moment before showing this page; Now you can edit the code and play around with it! You can always refer to the original URL for live code update from the workshop conductor as well!</p>
+<p><img src="file:///c:\Users\Lenovo\Documents\My Documents\ReLearnInitiative\Workshops\Playing_w_p5.js\doc_media\glitch_screen3.png" alt="Glitch Page with your code"></p>
+<h2 id="introduction-to-programming">Introduction to programming</h2>
+<p>So what is programming?</p>
+<p>Programming is basically the process of writing instructions for the computer. Basically, through programming, we can talk to the computer and tell them how to do something.</p>
+<p>So, how do we actually program? Well, we do it through programming languages, which is a english like language that we can somehow understand and write, which the computer can also understand through the use of another program called a compiler or intrepreter.</p>
+<p>In this workshop, we will be using Javascript, along with p5.js to tell the computer to do something for us!</p>
+<blockquote>
+<p>p5.js is a JavaScript library for creative coding, with a focus on making coding accessible and inclusive for artists, designers, educators, beginners, and anyone else!</p>
+</blockquote>
+<h2 id="introduction-to-basic-programming">Introduction to basic programming</h2>
+<h3 id="variables">Variables</h3>
+<p>Variables lets us save a piece of data by giving it a name, so we can retrive or change it later.</p>
+<p>It similar how you save a file so you can use it later.</p>
+<p>In javascript, we do it like this:</p>
+<pre><code class="language-javascript"><div><span class="hljs-comment">// Here we saved the information!</span>
+<span class="hljs-keyword">let</span> x = <span class="hljs-number">5</span>;
+<span class="hljs-keyword">let</span> y = <span class="hljs-number">6.0</span>;
+
+<span class="hljs-comment">// we can also do words!</span>
+<span class="hljs-keyword">let</span> someName = <span class="hljs-string">"John"</span>
+
+<span class="hljs-comment">// Now we can use it!</span>
+<span class="hljs-keyword">let</span> z = x + y;
+<span class="hljs-built_in">console</span>.log(someName);
+</div></code></pre>
+<p>You can also save a bunch of data, in a <strong>list</strong>!</p>
+<pre><code class="language-javascript"><div><span class="hljs-comment">// Declaring a collection of data!</span>
+<span class="hljs-keyword">let</span> myList = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+<span class="hljs-keyword">let</span> myOtherList = [];
+
+<span class="hljs-comment">// Adding things into the list</span>
+myOtherList.push(<span class="hljs-number">6</span>);
+</div></code></pre>
+<h3 id="conditionals">Conditionals</h3>
+<p>Conditionals refers to the code constructs that allows you to do things(Run code) based on some condition!</p>
+<p>One of them is the <code>if</code> statement, which works like so:</p>
+<pre><code class="language-javascript"><div>x = <span class="hljs-number">5</span>;
+y = <span class="hljs-number">10</span>;
+
+<span class="hljs-comment">// If x plus y is more than 10</span>
+<span class="hljs-keyword">if</span>(x + y &gt; <span class="hljs-number">10</span>){
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Its more than 10!"</span>);
+}<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x + y &lt; <span class="hljs-number">5</span>){ <span class="hljs-comment">//if x plus y is less than 5</span>
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Less than 5!"</span>);
+}<span class="hljs-keyword">else</span>{
+  <span class="hljs-comment">// if x + y is not more than 10 or less than 5 (What value falls in here?)</span>
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"I don't know?"</span>);
+}
+</div></code></pre>
+<p>Change the value of x and y and see what happens!</p>
+<p>We can also perform something multiple times until we fullfill a condition, which is called a loop. We can do this via the <code>for</code> statement.</p>
+<pre><code class="language-javascript"><div><span class="hljs-comment">// This loops runs like so</span>
+<span class="hljs-comment">// let a variable i = 0, we run the loop as long as i is less than 10</span>
+<span class="hljs-comment">// and at the end of every loop (when the code inside finish running once),</span>
+<span class="hljs-comment">// we add i by 1</span>
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt;<span class="hljs-number">10</span>; i++){
+  <span class="hljs-built_in">console</span>.log(i); <span class="hljs-comment">//So this will print out 0 ... 9 and then stop :)</span>
+}
+</div></code></pre>
+<p>There's much more conditionals out there, which we might discover later, but do explore more yourself if interested!</p>
+<h3 id="functions">Functions</h3>
+<p>Functions is a slightly more confusing concept, but what it is actually quite straight forward!</p>
+<p>Functions is basically just a bunch or a block of code that you can use over and over again just by calling the function name: Its a variables that refers to a bunch of code!</p>
+<p>Let me show you:</p>
+<pre><code class="language-javascript"><div><span class="hljs-comment">// Defining a function</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myFunction</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-comment">// Fyi, console.log is a function too!</span>
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Called you!"</span>);
+}
+
+<span class="hljs-comment">// Calling it</span>
+myFunction();
+<span class="hljs-comment">// Calling it again</span>
+myFunction();
+
+<span class="hljs-comment">// Defining another function that takes some values~</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addBoth</span>(<span class="hljs-params">x, y</span>)</span>{
+  <span class="hljs-built_in">console</span>.log(x + y)
+}
+addBoth(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>); <span class="hljs-comment">//3</span>
+addBoth(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>); <span class="hljs-comment">//5</span>
+</div></code></pre>
+<h2 id="basic-drawing-in-p5js">Basic Drawing in p5.js</h2>
+<p>Let's start with learning how to draw simple shapes in p5.js.</p>
+<p>First, go to <code>script.js</code>.</p>
+<p>You should see code like this in there:</p>
+<pre><code class="language-js"><div><span class="hljs-comment">// This functions runs once at the start of the program</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setup</span>(<span class="hljs-params"></span>) </span>{
+  createCanvas(<span class="hljs-number">640</span>, <span class="hljs-number">600</span>);
+  background(<span class="hljs-number">255</span>);
+}
+
+<span class="hljs-comment">// This function loops; As in it will be called continuously throughout the application</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>) </span>{
+}
+</div></code></pre>
+<p>Here, you can see <code>createCanvas(640, 600)</code> which is a function that creates a drawing board in the body of a html document for p5.js.</p>
+<p>You also see <code>background(255)</code>, which sets the background to white (Using RGB values).</p>
+<p>p5.js uses a grid system for its canvas, so you have to provide coordinates to things that you draw. It looks something like this:</p>
+<p><img src="file:///c:\Users\Lenovo\Documents\My Documents\ReLearnInitiative\Workshops\Playing_w_p5.js\doc_media\grid.png" alt="Grid and shapes"></p>
+<h3 id="ellipse">Ellipse</h3>
+<p>Let's start by drawing a circle, or otherwise known as a ellipse. To draw an ellipse. we use a function called <code>ellipse(x,y,width,height)</code>.</p>
+<p><code>x</code>, <code>y</code>, <code>width</code>, <code>height</code> here are the <strong>parameters</strong> that tells the <code>ellipse()</code> function what are the coordinates (<code>x</code>, <code>y</code>) and size (<code>width</code>, <code>height</code>) of the circle I want to draw.</p>
+<p>You use it like so :</p>
+<pre><code class="language-js"><div><span class="hljs-comment">// This functions runs once at the start of the program</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setup</span>(<span class="hljs-params"></span>) </span>{
+  createCanvas(<span class="hljs-number">640</span>, <span class="hljs-number">600</span>);
+  background(<span class="hljs-number">255</span>);
+}
+
+<span class="hljs-comment">// This function loops; As in it will be called continuously throughout the application</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>) </span>{
+    ellipse(<span class="hljs-number">100</span>, <span class="hljs-number">200</span>, <span class="hljs-number">80</span>, <span class="hljs-number">80</span>);
+}
+</div></code></pre>
+<p>The result:
+<img src="file:///c:\Users\Lenovo\Documents\My Documents\ReLearnInitiative\Workshops\Playing_w_p5.js\doc_media\ellipse1.png" alt="a circle"></p>
+<p>You can also use variables to store the <strong>parameters</strong> if they can be calculated or acquired later.</p>
+<pre><code class="language-js"><div><span class="hljs-keyword">let</span> x = <span class="hljs-number">50</span>;
+<span class="hljs-keyword">let</span> y = <span class="hljs-number">60</span>;
+
+<span class="hljs-comment">// This functions runs once at the start of the program</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setup</span>(<span class="hljs-params"></span>) </span>{
+  createCanvas(<span class="hljs-number">640</span>, <span class="hljs-number">600</span>);
+  background(<span class="hljs-number">255</span>);
+}
+
+<span class="hljs-comment">// This function loops; As in it will be called continuously throughout the application</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>) </span>{
+    ellipse(x, y, <span class="hljs-number">80</span>, <span class="hljs-number">80</span>);
+}
+</div></code></pre>
+<p>The result:
+<img src="file:///c:\Users\Lenovo\Documents\My Documents\ReLearnInitiative\Workshops\Playing_w_p5.js\doc_media\ellipse2.png" alt="a circle"></p>
+<h3 id="rect">Rect</h3>
+<p>Similarly, you can draw a rectangle via using the <code>rect(x, y, width, height)</code> function.</p>
+<pre><code class="language-js"><div><span class="hljs-comment">// This functions runs once at the start of the program</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setup</span>(<span class="hljs-params"></span>) </span>{
+  createCanvas(<span class="hljs-number">640</span>, <span class="hljs-number">600</span>);
+  background(<span class="hljs-number">255</span>);
+}
+
+<span class="hljs-comment">// This function loops; As in it will be called continuously throughout the application</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>) </span>{
+    ellipse(<span class="hljs-number">100</span>, <span class="hljs-number">200</span>, <span class="hljs-number">80</span>, <span class="hljs-number">80</span>);
+}
+</div></code></pre>
+<p>The result:
+<img src="file:///c:\Users\Lenovo\Documents\My Documents\ReLearnInitiative\Workshops\Playing_w_p5.js\doc_media\rect1.png" alt="a rectangle"></p>
+<h3 id="fill">Fill</h3>
+<p>We had been drawing shapes, but just in case you haven't realised, the shapes that we drew does not have any colour, how do we change that?</p>
+<p>Simply use another function of course!</p>
+<p><code>fill(red, green, blue)</code> is a function that allows you to set the colour of the insides of the next thing you draw. It takes 3 parameters: <code>red</code>, <code>green</code> and <code>blue</code>, to allow you to change colours.</p>
+<p>To demonstrate, let me change the colour of the rectangle we had to violet. According to my google search, violet had the value of 238 red, 130 green and 238 blue. Let's pluck that value in it and see what happens.</p>
+<pre><code class="language-js"><div><span class="hljs-keyword">let</span> x = <span class="hljs-number">50</span>;
+<span class="hljs-keyword">let</span> y = <span class="hljs-number">60</span>;
+
+<span class="hljs-comment">// This functions runs once at the start of the program</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setup</span>(<span class="hljs-params"></span>) </span>{
+  createCanvas(<span class="hljs-number">640</span>, <span class="hljs-number">600</span>);
+  background(<span class="hljs-number">255</span>);
+}
+
+<span class="hljs-comment">// This function loops; As in it will be called continuously throughout the application</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>) </span>{
+    fill(<span class="hljs-number">238</span>,<span class="hljs-number">130</span>,<span class="hljs-number">238</span>);
+    rect(x, y, <span class="hljs-number">80</span>, <span class="hljs-number">80</span>);
+}
+</div></code></pre>
+<p>Result:</p>
+<p><img src="file:///c:\Users\Lenovo\Documents\My Documents\ReLearnInitiative\Workshops\Playing_w_p5.js\doc_media\violet_rect.png" alt="violet fill"></p>
+<p><strong>Tada !</strong></p>
+<p>Now, you might be thinking that drawing with code is good and all, but is it all it can do? This is where <em>Events</em> comes in.</p>
+<h2 id="events-in-p5js">Events in p5.js</h2>
+<p>p5.js provided us with some functions to make our drawing <strong>react</strong> to what we do. Let's take a look:</p>
+<h3 id="keypressed">keyPressed</h3>
+<p>p5.js provide us with a <code>keyPressed()</code> function that we can implement. Here is how:</p>
+<pre><code class="language-js"><div><span class="hljs-keyword">let</span> x = <span class="hljs-number">50</span>;
+<span class="hljs-keyword">let</span> y = <span class="hljs-number">60</span>;
+
+<span class="hljs-comment">// This functions runs once at the start of the program</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setup</span>(<span class="hljs-params"></span>) </span>{
+  createCanvas(<span class="hljs-number">640</span>, <span class="hljs-number">600</span>);
+  background(<span class="hljs-number">255</span>);
+}
+
+<span class="hljs-comment">// This function loops; As in it will be called continuously throughout the application</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>) </span>{
+    fill(<span class="hljs-number">238</span>,<span class="hljs-number">130</span>,<span class="hljs-number">238</span>);
+    rect(x, y, <span class="hljs-number">80</span>, <span class="hljs-number">80</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keyPressed</span>(<span class="hljs-params"></span>)</span>{
+  rect(<span class="hljs-number">100</span>, <span class="hljs-number">200</span>, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>);
+}
+</div></code></pre>
+<p>Go back to your application and try pressing any key. What happens?</p>
+<h3 id="key--keycode">key &amp; keyCode</h3>
+<p>When any key is pressed, the <code>keyPressed</code> function will be called. That's why we rely <code>key</code> and <code>keyCode</code> to keep track of the key pressed.</p>
+<p>The <code>key</code> and <code>keyCode</code> variables holds value to the current keyboard key that you are clicking on. <code>key</code> holds the literal value (Meaning that letter C would cause it to hold 'C' as a value), but <code>keyCode</code> holds the code for the key (For example, letter C has key code 67 and the spacebar has key code of 32).</p>
+<p>Both can be used, but key code are usually used to detect instances of special key like the Return key or the Space bar.</p>
+<pre><code class="language-js"><div><span class="hljs-keyword">let</span> x = <span class="hljs-number">50</span>;
+<span class="hljs-keyword">let</span> y = <span class="hljs-number">60</span>;
+
+<span class="hljs-comment">// This functions runs once at the start of the program</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setup</span>(<span class="hljs-params"></span>) </span>{
+  createCanvas(<span class="hljs-number">640</span>, <span class="hljs-number">600</span>);
+  background(<span class="hljs-number">255</span>);
+}
+
+<span class="hljs-comment">// This function loops; As in it will be called continuously throughout the application</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>) </span>{
+    fill(<span class="hljs-number">238</span>,<span class="hljs-number">130</span>,<span class="hljs-number">238</span>);
+    rect(x, y, <span class="hljs-number">80</span>, <span class="hljs-number">80</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keyPressed</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-keyword">if</span>(key == <span class="hljs-string">'c'</span>){
+    rect(<span class="hljs-number">100</span>, <span class="hljs-number">200</span>, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>);
+  }
+  <span class="hljs-keyword">if</span>(keyCode == <span class="hljs-number">32</span>){
+    rect(<span class="hljs-number">400</span>, <span class="hljs-number">200</span>, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>);
+  }
+}
+</div></code></pre>
+<p>You may notice that I used the special symbol, <code>==</code>. It is actually called logical operators, and they allow us to compare conditions specified in the conditional statement (<code>if</code> and <code>else</code>). <code>a == b</code> checks if the value of <code>a</code> is equals to <code>b</code> and only resolve to true if it is equal. There are many more logical like the &quot;AND&quot; operator (<code>&amp;&amp;</code>) and the &quot;OR&quot; operator, which can allow us to do more comparisons! Go check them out!</p>
+<p>Now, when the 'c' key or the 'C' key is pressed, I would set the background to 255, which is white, which will also reset everything on it! Success!</p>
+<h3 id="keyisdown">keyIsDown</h3>
+<p>What about if I want to detect when a key is held down?</p>
+<p>There is a special function that let us detect that event, <code>keyIsDown()</code>. The function is used like so:</p>
+<pre><code class="language-js"><div><span class="hljs-keyword">let</span> x = <span class="hljs-number">50</span>;
+<span class="hljs-keyword">let</span> y = <span class="hljs-number">60</span>;
+
+<span class="hljs-comment">// This functions runs once at the start of the program</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setup</span>(<span class="hljs-params"></span>) </span>{
+  createCanvas(<span class="hljs-number">640</span>, <span class="hljs-number">600</span>);
+  background(<span class="hljs-number">255</span>);
+}
+
+<span class="hljs-comment">// This function loops; As in it will be called continuously throughout the application</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>) </span>{
+    fill(<span class="hljs-number">238</span>,<span class="hljs-number">130</span>,<span class="hljs-number">238</span>);
+    ellipse(x, y, <span class="hljs-number">60</span>, <span class="hljs-number">60</span>);
+
+    <span class="hljs-comment">// Drop a keycode into the function tested with an if statement</span>
+    <span class="hljs-keyword">if</span> (keyIsDown(<span class="hljs-number">32</span>)) {
+      x = x + <span class="hljs-number">10</span>;
+      y = y + <span class="hljs-number">10</span>;
+      ellipse(x, y, <span class="hljs-number">60</span>, <span class="hljs-number">60</span>);
+    }
+}
+</div></code></pre>
+<p>Here, as stated before, the <code>keyCode</code> of 32 refers to the spacebar. The function <code>keyIsDown</code> inform us if the key of spacebar is pressed down, via a true or false value. Thus, when using it in conjunction with the <code>if</code> statement, the code inside the <code>if</code> statement only runs as long as the key is held down.</p>
+<p>Try holding down the key, you should see a moving circle that goes down diagonally!</p>
+<h2 id="lesson-1-playing-with-the-snake-game">Lesson 1: Playing with the Snake Game</h2>
+<h3 id="looking-at-a-snake-game">Looking at a snake game</h3>
+<p>Let's first open up the prepared snake game. Play with the game, try looking at the existing code for a while!</p>
+<p>Now, let's look at its code. Open up index.js. First you'll see this.</p>
+<pre><code class="language-javascript"><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setup</span>(<span class="hljs-params"></span>) </span>{
+  createCanvas(<span class="hljs-number">400</span>, <span class="hljs-number">400</span>);
+  w = floor(width / rez);
+  h = floor(height / rez);
+  frameRate(<span class="hljs-number">5</span>);
+  snake = <span class="hljs-keyword">new</span> Snake();
+  foodLocation();
+}
+</div></code></pre>
+<p>As you may see, we create a drawing board for our drawings, and record its width and height in variables <code>w</code> and <code>h</code>. We also set the framerate (Basically how many times we redraw per second) to 5 to create a arcade like feeling for the snake game. We then create a new Snake via calling <code>new Snake()</code>, and call the <code>foodLocation()</code> function to create food for the snake to eat.</p>
+<pre><code class="language-javascript"><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foodLocation</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">let</span> x = floor(random(w));
+  <span class="hljs-keyword">let</span> y = floor(random(h));
+  food = createVector(x, y);
+}
+</div></code></pre>
+<p>The <code>foodLocation</code> function creates food at a random coordinate in the drawing board, and save the coordinates of the food inside the <code>food</code> variables so that we can use it later.</p>
+<pre><code class="language-javascript"><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keyPressed</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">if</span> ((keyCode === LEFT_ARROW) &amp;&amp; (prevKeyCode != RIGHT_ARROW)) {
+    prevKeyCode = LEFT_ARROW;
+    snake.setDir(<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((keyCode === RIGHT_ARROW) &amp;&amp; (prevKeyCode != LEFT_ARROW)) {
+    prevKeyCode = RIGHT_ARROW;
+    snake.setDir(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((keyCode === DOWN_ARROW) &amp;&amp; (prevKeyCode != UP_ARROW)) {
+    prevKeyCode = DOWN_ARROW;
+    snake.setDir(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((keyCode === UP_ARROW) &amp;&amp; (prevKeyCode != DOWN_ARROW)) {
+    prevKeyCode = UP_ARROW;
+    snake.setDir(<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>);
+  }
+}
+</div></code></pre>
+<p>Just like what we said before, the code inside <code>keyPressed()</code> function contains code describing how the game should react based on user input(events), and in this case we can see each keyboard input actually correspond to the action that the snake would take. <code>prevKeyCode</code> here was used to prevent the snake from turning 180 degrees.</p>
+<pre><code class="language-javascript"><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>) </span>{
+  scale(rez);
+  background(<span class="hljs-number">220</span>);
+  <span class="hljs-keyword">if</span> (snake.eat(food)) {
+    foodLocation();
+  }
+  snake.update();
+  snake.show();
+
+  noStroke();
+  fill(<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+  rect(food.x, food.y, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+
+  <span class="hljs-keyword">if</span> (snake.endGame()) {
+    print(<span class="hljs-string">"END GAME"</span>);
+    background(<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+    noLoop();
+  }
+}
+</div></code></pre>
+<p>Finally, we look at the draw function, where for every frame we refresh the board via <code>background</code>. The <code>snake</code> is checked if it is eating any food, and will grow if so, with a new food generated from calling <code>foodLocation()</code>. We then update the snake via <code>snake.update()</code> and redraw the snake onto the board <code>snake.show()</code>. We also check if the <code>snake</code> hits itself or the wall which will cause the game to end, and if it ends then the background would be set to be red coloured, and the loop would be stopped. At last, we draw the food out on the board.</p>
+<p>We won't be looking at what is in the <code>snake.js</code> file, but feel free to look at the file and try to understand or research the <code>Snake</code> class.</p>
+<h3 id="changing-things-in-the-snake-game">Changing things in the snake game</h3>
+<p>Now that we understand the code a little bit, let's try to make some changes to the code. Starting from the ending screen, red colour doesn't really seem to be a very pleasing colour, so let's set it to something more soothing like blue colour. We can do so via changing the red, green, blue value in the <code>background</code> function.</p>
+<pre><code class="language-javascript"><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>) </span>{
+  scale(rez);
+  background(<span class="hljs-number">220</span>);
+  <span class="hljs-keyword">if</span> (snake.eat(food)) {
+    foodLocation();
+  }
+  snake.update();
+  snake.show();
+
+  noStroke();
+  fill(<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+  rect(food.x, food.y, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+
+  <span class="hljs-keyword">if</span> (snake.endGame()) {
+    print(<span class="hljs-string">"END GAME"</span>);
+    background(<span class="hljs-number">44</span>, <span class="hljs-number">135</span>, <span class="hljs-number">232</span>);
+    noLoop();
+  }
+}
+</div></code></pre>
+<p>We can also change the colour of the food with similar method.</p>
+<p>Next, lets add <strong>&quot;END GAME&quot;</strong> in the middle of the game over screen so that its known to the player that the game had already ended. We can do this via the <code>text</code> function, which write a given word in the drawing board at the given coordinates, in the form <code>text(&quot;word to write&quot;, x, y)</code>. We can further use <code>fill</code> and <code>textSize</code> to change how the font is styled, but here setting <code>textSize</code> to 1 is huge enough as it is.</p>
+<pre><code class="language-javascript"><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>) </span>{
+  scale(rez);
+  background(<span class="hljs-number">220</span>);
+  <span class="hljs-keyword">if</span> (snake.eat(food)) {
+    foodLocation();
+  }
+  snake.update();
+  snake.show();
+
+  noStroke();
+  fill(<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+  rect(food.x, food.y, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+
+  <span class="hljs-keyword">if</span> (snake.endGame()) {
+    print(<span class="hljs-string">"END GAME"</span>);
+    background(<span class="hljs-number">44</span>, <span class="hljs-number">135</span>, <span class="hljs-number">232</span>);
+    fill(<span class="hljs-number">0</span>);
+    textSize(<span class="hljs-number">1</span>);
+    text(<span class="hljs-string">"END GAME"</span>, floor(w/<span class="hljs-number">2</span>), floor(h/<span class="hljs-number">2</span>));
+    noLoop();
+  }
+}
+</div></code></pre>
+<p>Now, try running the game again, when the snake hit the wall or itself, the game would now display a message on the drawing board.</p>
+<p>Refreshing the page just to restart the game seems inconvenient, so lets adds a new function that allows us the restart the game again. We can do this first via adding a event at the <code>keyPressed</code> function like so.</p>
+<pre><code class="language-javascript"><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keyPressed</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">if</span> (keyCode === LEFT_ARROW &amp;&amp; prevKeyCode != RIGHT_ARROW) {
+    prevKeyCode = LEFT_ARROW;
+    snake.setDir(<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyCode === RIGHT_ARROW &amp;&amp; prevKeyCode != LEFT_ARROW) {
+    prevKeyCode = RIGHT_ARROW;
+    snake.setDir(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyCode === DOWN_ARROW &amp;&amp; prevKeyCode != UP_ARROW) {
+    prevKeyCode = DOWN_ARROW;
+    snake.setDir(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyCode === UP_ARROW &amp;&amp; prevKeyCode != DOWN_ARROW) {
+    prevKeyCode = UP_ARROW;
+    snake.setDir(<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>);
+  }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(keyCode === <span class="hljs-number">32</span>){
+    <span class="hljs-comment">// 32 is the code for space</span>
+  }
+}
+</div></code></pre>
+<p>Here, the code 32 refers to the Space bar key. Now that we added the statement to capture the event, we can add the logic that would be responsible for restarting the game.</p>
+<p>To restart the game, one simply need to reset everything to the original values, so lets us gather all the relevant variables and set them to the default value.</p>
+<pre><code class="language-javascript"><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keyPressed</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">if</span> (keyCode === LEFT_ARROW &amp;&amp; prevKeyCode != RIGHT_ARROW) {
+    prevKeyCode = LEFT_ARROW;
+    snake.setDir(<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyCode === RIGHT_ARROW &amp;&amp; prevKeyCode != LEFT_ARROW) {
+    prevKeyCode = RIGHT_ARROW;
+    snake.setDir(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyCode === DOWN_ARROW &amp;&amp; prevKeyCode != UP_ARROW) {
+    prevKeyCode = DOWN_ARROW;
+    snake.setDir(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyCode === UP_ARROW &amp;&amp; prevKeyCode != DOWN_ARROW) {
+    prevKeyCode = UP_ARROW;
+    snake.setDir(<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>);
+  }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(keyCode === <span class="hljs-number">32</span>){
+    <span class="hljs-comment">// 32 is the code for space</span>
+    snake = <span class="hljs-keyword">new</span> Snake();
+    foodLocation();
+    prevKeyCode = <span class="hljs-number">0</span>;
+    loop();
+  }
+}
+</div></code></pre>
+<p>As seen, we set the value of snake to a new instance of <code>Snake</code> thus reseting the state. Then, we use <code>foodLocation</code> to generate a new food location thus resetting the food. Then we set <code>prevKeyCode</code> back to 0 to allow player to use any movement with no restrictions. Last but not least, we use <code>loop</code> to start the <code>draw()</code> loop again, thus starting the game.</p>
+<p>Thus, with a few simple lines of code, we manage to make the end game experience better for players.</p>
+<h2 id="lesson-2-making-a-drawing-game">Lesson 2: Making a drawing game</h2>
+<p>In this lesson, let's try to make something out of nothing using what we've learnt so far!</p>
+<p>Let's start by having the basic structure!</p>
+<pre><code class="language-js"><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setup</span>(<span class="hljs-params"></span>) </span>{
+  createCanvas(<span class="hljs-number">640</span>, <span class="hljs-number">600</span>);
+  background(<span class="hljs-number">255</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>)</span>{
+  
+}
+</div></code></pre>
+<h3 id="starting-simple">Starting simple</h3>
+<p>Starting simple from what we've learnt, first draw a rectangle on the drawing board like so.</p>
+<pre><code class="language-js"><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setup</span>(<span class="hljs-params"></span>) </span>{
+  createCanvas(<span class="hljs-number">640</span>, <span class="hljs-number">600</span>);
+  background(<span class="hljs-number">255</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-comment">// Draw the rectangle drawer at current pos</span>
+  fill(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+  rect(<span class="hljs-number">320</span>, <span class="hljs-number">300</span>, <span class="hljs-number">60</span>, <span class="hljs-number">60</span>);
+}
+</div></code></pre>
+<p>You should see a black rectangle in the middle of the screen.</p>
+<p>Next, we make the rectangle move. To do that, we define variables <code>x</code> and <code>y</code> on the top of the file so that it can be accessed by everyone, then use that as our <code>rect</code> drawing function:</p>
+<pre><code class="language-javascript"><div><span class="hljs-keyword">let</span> x = <span class="hljs-number">320</span>;
+<span class="hljs-keyword">let</span> y = <span class="hljs-number">300</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setup</span>(<span class="hljs-params"></span>) </span>{
+  createCanvas(<span class="hljs-number">640</span>, <span class="hljs-number">600</span>);
+  background(<span class="hljs-number">255</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-comment">// Draw the rectangle drawer at current pos</span>
+  fill(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+  rect(x, y, <span class="hljs-number">60</span>, <span class="hljs-number">60</span>);
+}
+</div></code></pre>
+<p>After that, we add in the events handling code for all the arrow buttons. We increase or decrease the value of <code>x</code> and <code>y</code> by 5 based on which arrow key is pressed.</p>
+<pre><code class="language-javascript"><div><span class="hljs-keyword">let</span> x = <span class="hljs-number">320</span>;
+<span class="hljs-keyword">let</span> y = <span class="hljs-number">300</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setup</span>(<span class="hljs-params"></span>) </span>{
+  createCanvas(<span class="hljs-number">640</span>, <span class="hljs-number">600</span>);
+  background(<span class="hljs-number">255</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-comment">// Check for events</span>
+  <span class="hljs-keyword">if</span> (keyIsDown(UP_ARROW)) {
+    y -= <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(DOWN_ARROW)) {
+    y += <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(RIGHT_ARROW)) {
+    x += <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(LEFT_ARROW)) {
+    x -= <span class="hljs-number">5</span>;
+  }
+
+  <span class="hljs-comment">// Draw the rectangle drawer at current pos</span>
+  fill(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+  rect(x, y, <span class="hljs-number">60</span>, <span class="hljs-number">60</span>);
+}
+</div></code></pre>
+<p>Refresh the page and try pressing on the arrow keys, you should be able to move the square while leaving a trail behind.</p>
+<p>Since we want it to draw only when we tell it to, we should add a <code>background</code> function call to redraw the white background onto the trails, and use another event capturing spacebar key press, which draws when press space.</p>
+<pre><code class="language-javascript"><div><span class="hljs-keyword">let</span> x = <span class="hljs-number">320</span>;
+<span class="hljs-keyword">let</span> y = <span class="hljs-number">300</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setup</span>(<span class="hljs-params"></span>) </span>{
+  createCanvas(<span class="hljs-number">640</span>, <span class="hljs-number">600</span>);
+  background(<span class="hljs-number">255</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-comment">// Clear the screen</span>
+  background(<span class="hljs-number">255</span>);
+
+  <span class="hljs-comment">// Check for events</span>
+  <span class="hljs-keyword">if</span> (keyIsDown(UP_ARROW)) {
+    y -= <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(DOWN_ARROW)) {
+    y += <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(RIGHT_ARROW)) {
+    x += <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(LEFT_ARROW)) {
+    x -= <span class="hljs-number">5</span>;
+  }
+
+  <span class="hljs-comment">// If I press space, then draw</span>
+  <span class="hljs-keyword">if</span> (keyIsDown(<span class="hljs-number">32</span>)) {
+    fill(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+    rect(x, y, <span class="hljs-number">60</span>, <span class="hljs-number">60</span>);  
+  }
+}
+</div></code></pre>
+<p>Hmm, it doesn't seem to work as expected. Now, the rectangle only appears when we press space, which doesn't tell us where we are at the time, and does not leave a trail at all, which doesn't help us draw!</p>
+<p>To resolve this, we need to somehow remember the drawn location, which we can do using a list, and at the same time always draw a rectangle at our current location.</p>
+<p>Let's first change the code to always show where we are all the time.</p>
+<pre><code class="language-javascript"><div><span class="hljs-keyword">let</span> x = <span class="hljs-number">320</span>;
+<span class="hljs-keyword">let</span> y = <span class="hljs-number">300</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setup</span>(<span class="hljs-params"></span>) </span>{
+  createCanvas(<span class="hljs-number">640</span>, <span class="hljs-number">600</span>);
+  background(<span class="hljs-number">255</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-comment">// Clear the screen</span>
+  background(<span class="hljs-number">255</span>);
+
+  <span class="hljs-comment">// Check for events</span>
+  <span class="hljs-keyword">if</span> (keyIsDown(UP_ARROW)) {
+    y -= <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(DOWN_ARROW)) {
+    y += <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(RIGHT_ARROW)) {
+    x += <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(LEFT_ARROW)) {
+    x -= <span class="hljs-number">5</span>;
+  }
+
+  <span class="hljs-comment">// If I press space, then draw</span>
+  <span class="hljs-keyword">if</span> (keyIsDown(<span class="hljs-number">32</span>)) {
+  
+  }
+
+  <span class="hljs-comment">// Draw the rectangle drawer at current pos</span>
+  fill(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+  rect(x, y, <span class="hljs-number">60</span>, <span class="hljs-number">60</span>);
+}
+</div></code></pre>
+<p>Now we can see the drawing location all the time, and it doesn't leave a trail cause of what we did as well! Let's move on to implementing the &quot;remembering&quot; part of things: We declare a list at the top of the file, and add the <code>x</code> and <code>y</code> as an <code>object</code> (which is basically a thing that can holds many attributes/data in simple terms) into the list so that we can retrieve it later. We then draw all this points before drawing the current location so that those point will show on the screen.</p>
+<p>That's a lot information to take in, so take a moment to look at the code and think about it.</p>
+<pre><code class="language-javascript"><div><span class="hljs-keyword">let</span> x = <span class="hljs-number">320</span>;
+<span class="hljs-keyword">let</span> y = <span class="hljs-number">300</span>;
+<span class="hljs-keyword">let</span> drawingArr = [];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setup</span>(<span class="hljs-params"></span>) </span>{
+  createCanvas(<span class="hljs-number">640</span>, <span class="hljs-number">600</span>);
+  background(<span class="hljs-number">255</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-comment">// Clear the screen</span>
+  background(<span class="hljs-number">255</span>);
+
+  <span class="hljs-comment">// Check for events</span>
+  <span class="hljs-keyword">if</span> (keyIsDown(UP_ARROW)) {
+    y -= <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(DOWN_ARROW)) {
+    y += <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(RIGHT_ARROW)) {
+    x += <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(LEFT_ARROW)) {
+    x -= <span class="hljs-number">5</span>;
+  }
+
+  <span class="hljs-comment">// If I press space, then remember drawn places</span>
+  <span class="hljs-keyword">if</span> (keyIsDown(<span class="hljs-number">32</span>)) {
+    drawingArr.push({
+      x,
+      y
+    });
+  }
+
+  <span class="hljs-comment">// Draw all previous rectangles</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; drawingArr.length; i++) {
+    fill(drawingArr[i].r, drawingArr[i].g, drawingArr[i].b);\
+  }
+
+  <span class="hljs-comment">// Draw the rectangle drawer at current pos</span>
+  fill(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+  rect(x, y, <span class="hljs-number">60</span>, <span class="hljs-number">60</span>);
+}
+</div></code></pre>
+<p>Now you should be able to make a trail when you press space, and at the same time move around all you want without drawing a thing as well!</p>
+<p>However, if you've notice, all this time we've been drawing with the colour black, which is quite boring. Let's change it up by introducing some colours. We can first try this via the fill function.</p>
+<pre><code class="language-javascript"><div><span class="hljs-keyword">let</span> x = <span class="hljs-number">320</span>;
+<span class="hljs-keyword">let</span> y = <span class="hljs-number">300</span>;
+<span class="hljs-keyword">let</span> drawingArr = [];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setup</span>(<span class="hljs-params"></span>) </span>{
+  createCanvas(<span class="hljs-number">640</span>, <span class="hljs-number">600</span>);
+  background(<span class="hljs-number">255</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-comment">// Clear the screen</span>
+  background(<span class="hljs-number">255</span>);
+
+  <span class="hljs-comment">// Check for events</span>
+  <span class="hljs-keyword">if</span> (keyIsDown(UP_ARROW)) {
+    y -= <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(DOWN_ARROW)) {
+    y += <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(RIGHT_ARROW)) {
+    x += <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(LEFT_ARROW)) {
+    x -= <span class="hljs-number">5</span>;
+  }
+
+  <span class="hljs-comment">// If I press space, then remember drawn places</span>
+  <span class="hljs-keyword">if</span> (keyIsDown(<span class="hljs-number">32</span>)) {
+    drawingArr.push({
+      x,
+      y
+    });
+  }
+
+  <span class="hljs-comment">// Draw all previous rectangles</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; drawingArr.length; i++) {
+    rect(drawingArr[i].x, drawingArr[i].y, <span class="hljs-number">60</span>, <span class="hljs-number">60</span>);
+  }
+
+  <span class="hljs-comment">// Draw the rectangle drawer at current pos</span>
+  fill(<span class="hljs-number">138</span>, <span class="hljs-number">222</span>, <span class="hljs-number">138</span>);
+  rect(x, y, <span class="hljs-number">60</span>, <span class="hljs-number">60</span>);
+}
+</div></code></pre>
+<p>Now we draw in green colour! However, you may notice the black outline surrounding the drawings and find it rather unappealing; No worries, we can remove them via using <code>noStroke()</code> in the <code>setup</code> function, which removes the outlines.</p>
+<pre><code class="language-javascript"><div><span class="hljs-keyword">let</span> x = <span class="hljs-number">320</span>;
+<span class="hljs-keyword">let</span> y = <span class="hljs-number">300</span>;
+<span class="hljs-keyword">let</span> drawingArr = [];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setup</span>(<span class="hljs-params"></span>) </span>{
+  createCanvas(<span class="hljs-number">640</span>, <span class="hljs-number">600</span>);
+  background(<span class="hljs-number">255</span>);
+  noStroke();
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-comment">// Clear the screen</span>
+  background(<span class="hljs-number">255</span>);
+
+  <span class="hljs-comment">// Check for events</span>
+  <span class="hljs-keyword">if</span> (keyIsDown(UP_ARROW)) {
+    y -= <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(DOWN_ARROW)) {
+    y += <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(RIGHT_ARROW)) {
+    x += <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(LEFT_ARROW)) {
+    x -= <span class="hljs-number">5</span>;
+  }
+
+  <span class="hljs-comment">// If I press space, then remember drawn places</span>
+  <span class="hljs-keyword">if</span> (keyIsDown(<span class="hljs-number">32</span>)) {
+    drawingArr.push({
+      x,
+      y
+    });
+  }
+
+  <span class="hljs-comment">// Draw all previous rectangles</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; drawingArr.length; i++) {
+    rect(drawingArr[i].x, drawingArr[i].y, <span class="hljs-number">60</span>, <span class="hljs-number">60</span>);
+  }
+
+  <span class="hljs-comment">// Draw the rectangle drawer at current pos</span>
+  fill(<span class="hljs-number">138</span>, <span class="hljs-number">222</span>, <span class="hljs-number">138</span>);
+  rect(x, y, <span class="hljs-number">60</span>, <span class="hljs-number">60</span>);
+}
+</div></code></pre>
+<p>One colour is rather boring... Let's spice it up by allowing players to switch between random generated colours before drawing! When we do this, we also have to realise that all the previously drawn rectangle must have their colour remembered as well!</p>
+<p>Thus, let's start off by declaring new variables that store our current colour values, which if you remember, consists of red, green and blue values that span from 0-255. We then use this colour for drawing our cursor rectangle (the rectangle that we control around) to show what colour we are currently on so that players can see.</p>
+<pre><code class="language-javascript"><div><span class="hljs-keyword">let</span> x = <span class="hljs-number">320</span>;
+<span class="hljs-keyword">let</span> y = <span class="hljs-number">300</span>;
+<span class="hljs-keyword">let</span> r = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">let</span> g = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">let</span> b = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">let</span> drawingArr = [];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setup</span>(<span class="hljs-params"></span>) </span>{
+  createCanvas(<span class="hljs-number">640</span>, <span class="hljs-number">600</span>);
+  background(<span class="hljs-number">255</span>);
+  noStroke();
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-comment">// Clear the screen</span>
+  background(<span class="hljs-number">255</span>);
+
+  <span class="hljs-comment">// Check for events</span>
+  <span class="hljs-keyword">if</span> (keyIsDown(UP_ARROW)) {
+    y -= <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(DOWN_ARROW)) {
+    y += <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(RIGHT_ARROW)) {
+    x += <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(LEFT_ARROW)) {
+    x -= <span class="hljs-number">5</span>;
+  }
+
+  <span class="hljs-comment">// If I press space, then remember drawn places</span>
+  <span class="hljs-keyword">if</span> (keyIsDown(<span class="hljs-number">32</span>)) {
+    drawingArr.push({
+      x,
+      y
+    });
+  }
+
+  <span class="hljs-comment">// Draw all previous rectangles</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; drawingArr.length; i++) {
+    rect(drawingArr[i].x, drawingArr[i].y, <span class="hljs-number">60</span>, <span class="hljs-number">60</span>);
+  }
+
+  <span class="hljs-comment">// Draw the rectangle drawer at current pos</span>
+  fill(r, g, b);
+  rect(x, y, <span class="hljs-number">60</span>, <span class="hljs-number">60</span>);
+}
+</div></code></pre>
+<p>Great, the code works as expected.</p>
+<p>Now, we use a <code>random</code> function to generate a random number for us, from 0-255 so that we can randomly assign a value to red, green and blue making a random colour. Let's use the key &quot;s&quot; as the button that allows us to switch colours.</p>
+<pre><code class="language-javascript"><div><span class="hljs-keyword">let</span> x = <span class="hljs-number">320</span>;
+<span class="hljs-keyword">let</span> y = <span class="hljs-number">300</span>;
+<span class="hljs-keyword">let</span> r = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">let</span> g = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">let</span> b = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">let</span> drawingArr = [];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setup</span>(<span class="hljs-params"></span>) </span>{
+  createCanvas(<span class="hljs-number">640</span>, <span class="hljs-number">600</span>);
+  background(<span class="hljs-number">255</span>);
+  noStroke();
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>)</span>{
+  <span class="hljs-comment">// Clear the screen</span>
+  background(<span class="hljs-number">255</span>);
+
+  <span class="hljs-comment">// Check for events</span>
+  <span class="hljs-keyword">if</span> (keyIsDown(UP_ARROW)) {
+    y -= <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(DOWN_ARROW)) {
+    y += <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(RIGHT_ARROW)) {
+    x += <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(LEFT_ARROW)) {
+    x -= <span class="hljs-number">5</span>;
+  }
+
+  <span class="hljs-comment">// If I press 's', switch colours and remember</span>
+  <span class="hljs-keyword">if</span> (keyIsDown(<span class="hljs-number">83</span>)) {
+    r = random(<span class="hljs-number">255</span>);
+    g = random(<span class="hljs-number">255</span>);
+    b = random(<span class="hljs-number">255</span>);
+  }
+
+  <span class="hljs-comment">// If I press space, then remember drawn places</span>
+  <span class="hljs-keyword">if</span> (keyIsDown(<span class="hljs-number">32</span>)) {
+    drawingArr.push({
+      x,
+      y
+    });
+  }
+
+  <span class="hljs-comment">// Draw all previous rectangles</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; drawingArr.length; i++) {
+    rect(drawingArr[i].x, drawingArr[i].y, <span class="hljs-number">60</span>, <span class="hljs-number">60</span>);
+  }
+
+  <span class="hljs-comment">// Draw the rectangle drawer at current pos</span>
+  fill(r, g, b);
+  rect(x, y, <span class="hljs-number">60</span>, <span class="hljs-number">60</span>);
+}
+</div></code></pre>
+<p>It kind works, but we every drawn rectangle changes colour together when we press the &quot;s&quot; button... We still have to make it &quot;remember&quot; all the colours of the retangle drawn before this. To do that, add to the <code>object</code> holding <code>x</code> and <code>y</code> value the <code>r</code>,<code>g</code>,<code>b</code> value so that it would be &quot;remembered&quot;, and manually set the colours for all the rectangles drawn before as well!</p>
+<pre><code class="language-javascript"><div><span class="hljs-comment">// Variables that needs to persist state here.</span>
+<span class="hljs-keyword">let</span> x = <span class="hljs-number">320</span>;
+<span class="hljs-keyword">let</span> y = <span class="hljs-number">300</span>;
+<span class="hljs-keyword">let</span> r = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">let</span> g = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">let</span> b = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">let</span> drawingArr = [];
+
+<span class="hljs-comment">// This functions runs once at the start of the program</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setup</span>(<span class="hljs-params"></span>) </span>{
+  createCanvas(<span class="hljs-number">640</span>, <span class="hljs-number">600</span>);
+  background(<span class="hljs-number">255</span>);
+  noStroke();
+}
+
+<span class="hljs-comment">// This function loops; As in it will be called continuously throughout the application</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">draw</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// Clear the screen</span>
+  background(<span class="hljs-number">255</span>);
+
+  <span class="hljs-comment">// Check for events</span>
+  <span class="hljs-keyword">if</span> (keyIsDown(UP_ARROW)) {
+    y -= <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(DOWN_ARROW)) {
+    y += <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(RIGHT_ARROW)) {
+    x += <span class="hljs-number">5</span>;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (keyIsDown(LEFT_ARROW)) {
+    x -= <span class="hljs-number">5</span>;
+  }
+
+  <span class="hljs-comment">// If I press 's', switch colours and remember</span>
+  <span class="hljs-keyword">if</span> (keyIsDown(<span class="hljs-number">83</span>)) {
+    r = random(<span class="hljs-number">255</span>);
+    g = random(<span class="hljs-number">255</span>);
+    b = random(<span class="hljs-number">255</span>);
+  }
+
+  <span class="hljs-comment">// If I press space, then remember drawn places</span>
+  <span class="hljs-keyword">if</span> (keyIsDown(<span class="hljs-number">32</span>)) {
+    drawingArr.push({
+      x,
+      y,
+      r,
+      g,
+      b
+    });
+  }
+
+  <span class="hljs-comment">// Draw all previous rectangles</span>
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; drawingArr.length; i++) {
+    fill(drawingArr[i].r, drawingArr[i].g, drawingArr[i].b);
+    rect(drawingArr[i].x, drawingArr[i].y, <span class="hljs-number">60</span>, <span class="hljs-number">60</span>);
+  }
+
+  <span class="hljs-comment">// Draw the rectangle drawer at current pos</span>
+  fill(r, g, b);
+  rect(x, y, <span class="hljs-number">60</span>, <span class="hljs-number">60</span>);
+}
+</div></code></pre>
+<p><strong>Perfect!</strong></p>
+<h2 id="references">References</h2>
+<p><a href="https://p5js.org/reference/">p5.js docs</a></p>
+<p><a href="https://www.youtube.com/user/shiffman">The Coding Train</a></p>
+
+    </body>
+    </html>
