@@ -558,7 +558,6 @@ function draw(){
 
 ### Starting simple
 
-
 ## References
 
 [p5.js docs](https://p5js.org/reference/)
