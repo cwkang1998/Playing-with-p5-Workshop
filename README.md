@@ -363,7 +363,7 @@ Here, as stated before, the `keyCode` of 32 refers to the spacebar. The function
 
 Try holding down the key, you should see a moving circle that goes down diagonally!
 
-## Lesson 1: Playing with the Snake Game
+## Activity 1: Playing with the Snake Game
 
 ### Looking at a snake game
 
@@ -551,7 +551,7 @@ As seen, we set the value of snake to a new instance of `Snake` thus reseting th
 
 Thus, with a few simple lines of code, we manage to make the end game experience better for players.
 
-## Lesson 2: Making a drawing game
+## Activity 2: Making a drawing game
 
 In this lesson, let's try to make something out of nothing using what we've learnt so far!
 
@@ -636,137 +636,11 @@ function draw(){
 
 Refresh the page and try pressing on the arrow keys, you should be able to move the square while leaving a trail behind.
 
-Since we want it to draw only when we tell it to, we should add a `background` function call to redraw the white background onto the trails, and use another event capturing spacebar key press, which draws when press space.
-
-```javascript
-let x = 320;
-let y = 300;
-
-function setup() {
-  createCanvas(640, 600);
-  background(255);
-}
-
-function draw(){
-  // Clear the screen
-  background(255);
-
-  // Check for events
-  if (keyIsDown(UP_ARROW)) {
-    y -= 5;
-  } else if (keyIsDown(DOWN_ARROW)) {
-    y += 5;
-  } else if (keyIsDown(RIGHT_ARROW)) {
-    x += 5;
-  } else if (keyIsDown(LEFT_ARROW)) {
-    x -= 5;
-  }
-
-  // If I press space, then draw
-  if (keyIsDown(32)) {
-    fill(0, 0, 0);
-    rect(x, y, 60, 60);  
-  }
-}
-```
-
-Hmm, it doesn't seem to work as expected. Now, the rectangle only appears when we press space, which doesn't tell us where we are at the time, and does not leave a trail at all, which doesn't help us draw!
-
-To resolve this, we need to somehow remember the drawn location, which we can do using a list, and at the same time always draw a rectangle at our current location.
-
-Let's first change the code to always show where we are all the time.
-
-```javascript
-let x = 320;
-let y = 300;
-
-function setup() {
-  createCanvas(640, 600);
-  background(255);
-}
-
-function draw(){
-  // Clear the screen
-  background(255);
-
-  // Check for events
-  if (keyIsDown(UP_ARROW)) {
-    y -= 5;
-  } else if (keyIsDown(DOWN_ARROW)) {
-    y += 5;
-  } else if (keyIsDown(RIGHT_ARROW)) {
-    x += 5;
-  } else if (keyIsDown(LEFT_ARROW)) {
-    x -= 5;
-  }
-
-  // If I press space, then draw
-  if (keyIsDown(32)) {
-  
-  }
-
-  // Draw the rectangle drawer at current pos
-  fill(0, 0, 0);
-  rect(x, y, 60, 60);
-}
-```
-
-Now we can see the drawing location all the time, and it doesn't leave a trail cause of what we did as well! Let's move on to implementing the "remembering" part of things: We declare a list at the top of the file, and add the `x` and `y` as an `object` (which is basically a thing that can holds many attributes/data in simple terms) into the list so that we can retrieve it later. We then draw all this points before drawing the current location so that those point will show on the screen.
-
-That's a lot information to take in, so take a moment to look at the code and think about it.
-
-```javascript
-let x = 320;
-let y = 300;
-let drawingArr = [];
-
-function setup() {
-  createCanvas(640, 600);
-  background(255);
-}
-
-function draw(){
-  // Clear the screen
-  background(255);
-
-  // Check for events
-  if (keyIsDown(UP_ARROW)) {
-    y -= 5;
-  } else if (keyIsDown(DOWN_ARROW)) {
-    y += 5;
-  } else if (keyIsDown(RIGHT_ARROW)) {
-    x += 5;
-  } else if (keyIsDown(LEFT_ARROW)) {
-    x -= 5;
-  }
-
-  // If I press space, then remember drawn places
-  if (keyIsDown(32)) {
-    drawingArr.push({
-      x,
-      y
-    });
-  }
-
-  // Draw all previous rectangles
-  for (let i = 0; i < drawingArr.length; i++) {
-    fill(drawingArr[i].r, drawingArr[i].g, drawingArr[i].b);\
-  }
-
-  // Draw the rectangle drawer at current pos
-  fill(0, 0, 0);
-  rect(x, y, 60, 60);
-}
-```
-
-Now you should be able to make a trail when you press space, and at the same time move around all you want without drawing a thing as well!
-
 However, if you've notice, all this time we've been drawing with the colour black, which is quite boring. Let's change it up by introducing some colours. We can first try this via the fill function.
 
 ```javascript
 let x = 320;
 let y = 300;
-let drawingArr = [];
 
 function setup() {
   createCanvas(640, 600);
@@ -774,9 +648,6 @@ function setup() {
 }
 
 function draw(){
-  // Clear the screen
-  background(255);
-
   // Check for events
   if (keyIsDown(UP_ARROW)) {
     y -= 5;
@@ -786,19 +657,6 @@ function draw(){
     x += 5;
   } else if (keyIsDown(LEFT_ARROW)) {
     x -= 5;
-  }
-
-  // If I press space, then remember drawn places
-  if (keyIsDown(32)) {
-    drawingArr.push({
-      x,
-      y
-    });
-  }
-
-  // Draw all previous rectangles
-  for (let i = 0; i < drawingArr.length; i++) {
-    rect(drawingArr[i].x, drawingArr[i].y, 60, 60);
   }
 
   // Draw the rectangle drawer at current pos
@@ -812,7 +670,6 @@ Now we draw in green colour! However, you may notice the black outline surroundi
 ```javascript
 let x = 320;
 let y = 300;
-let drawingArr = [];
 
 function setup() {
   createCanvas(640, 600);
@@ -821,9 +678,6 @@ function setup() {
 }
 
 function draw(){
-  // Clear the screen
-  background(255);
-
   // Check for events
   if (keyIsDown(UP_ARROW)) {
     y -= 5;
@@ -835,26 +689,15 @@ function draw(){
     x -= 5;
   }
 
-  // If I press space, then remember drawn places
-  if (keyIsDown(32)) {
-    drawingArr.push({
-      x,
-      y
-    });
-  }
-
-  // Draw all previous rectangles
-  for (let i = 0; i < drawingArr.length; i++) {
-    rect(drawingArr[i].x, drawingArr[i].y, 60, 60);
-  }
-
   // Draw the rectangle drawer at current pos
   fill(138, 222, 138);
   rect(x, y, 60, 60);
 }
 ```
 
-One colour is rather boring... Let's spice it up by allowing players to switch between random generated colours before drawing! When we do this, we also have to realise that all the previously drawn rectangle must have their colour remembered as well!
+### Extra: Random Colours
+
+One colour is rather boring... Let's spice it up by allowing players to switch between random generated colours before drawing!
 
 Thus, let's start off by declaring new variables that store our current colour values, which if you remember, consists of red, green and blue values that span from 0-255. We then use this colour for drawing our cursor rectangle (the rectangle that we control around) to show what colour we are currently on so that players can see.
 
@@ -864,7 +707,6 @@ let y = 300;
 let r = 0;
 let g = 0;
 let b = 0;
-let drawingArr = [];
 
 function setup() {
   createCanvas(640, 600);
@@ -873,9 +715,6 @@ function setup() {
 }
 
 function draw(){
-  // Clear the screen
-  background(255);
-
   // Check for events
   if (keyIsDown(UP_ARROW)) {
     y -= 5;
@@ -885,19 +724,6 @@ function draw(){
     x += 5;
   } else if (keyIsDown(LEFT_ARROW)) {
     x -= 5;
-  }
-
-  // If I press space, then remember drawn places
-  if (keyIsDown(32)) {
-    drawingArr.push({
-      x,
-      y
-    });
-  }
-
-  // Draw all previous rectangles
-  for (let i = 0; i < drawingArr.length; i++) {
-    rect(drawingArr[i].x, drawingArr[i].y, 60, 60);
   }
 
   // Draw the rectangle drawer at current pos
@@ -908,7 +734,7 @@ function draw(){
 
 Great, the code works as expected.
 
-Now, we use a `random` function to generate a random number for us, from 0-255 so that we can randomly assign a value to red, green and blue making a random colour. Let's use the key "s" as the button that allows us to switch colours.
+Now, we use a `random` function to generate a random number for us, from 0-255 so that we can randomly assign a value to red, green and blue making a random colour. Let's use the space key as the button that allows us to switch colours.
 
 ```javascript
 let x = 320;
@@ -916,7 +742,6 @@ let y = 300;
 let r = 0;
 let g = 0;
 let b = 0;
-let drawingArr = [];
 
 function setup() {
   createCanvas(640, 600);
@@ -925,9 +750,6 @@ function setup() {
 }
 
 function draw(){
-  // Clear the screen
-  background(255);
-
   // Check for events
   if (keyIsDown(UP_ARROW)) {
     y -= 5;
@@ -939,88 +761,10 @@ function draw(){
     x -= 5;
   }
 
-  // If I press 's', switch colours and remember
-  if (keyIsDown(83)) {
+  if(keyIsDown(32)){
     r = random(255);
     g = random(255);
     b = random(255);
-  }
-
-  // If I press space, then remember drawn places
-  if (keyIsDown(32)) {
-    drawingArr.push({
-      x,
-      y
-    });
-  }
-
-  // Draw all previous rectangles
-  for (let i = 0; i < drawingArr.length; i++) {
-    rect(drawingArr[i].x, drawingArr[i].y, 60, 60);
-  }
-
-  // Draw the rectangle drawer at current pos
-  fill(r, g, b);
-  rect(x, y, 60, 60);
-}
-```
-
-It kind works, but we every drawn rectangle changes colour together when we press the "s" button... We still have to make it "remember" all the colours of the retangle drawn before this. To do that, add to the `object` holding `x` and `y` value the `r`,`g`,`b` value so that it would be "remembered", and manually set the colours for all the rectangles drawn before as well!
-
-```javascript
-// Variables that needs to persist state here.
-let x = 320;
-let y = 300;
-let r = 0;
-let g = 0;
-let b = 0;
-let drawingArr = [];
-
-// This functions runs once at the start of the program
-function setup() {
-  createCanvas(640, 600);
-  background(255);
-  noStroke();
-}
-
-// This function loops; As in it will be called continuously throughout the application
-function draw() {
-  // Clear the screen
-  background(255);
-
-  // Check for events
-  if (keyIsDown(UP_ARROW)) {
-    y -= 5;
-  } else if (keyIsDown(DOWN_ARROW)) {
-    y += 5;
-  } else if (keyIsDown(RIGHT_ARROW)) {
-    x += 5;
-  } else if (keyIsDown(LEFT_ARROW)) {
-    x -= 5;
-  }
-
-  // If I press 's', switch colours and remember
-  if (keyIsDown(83)) {
-    r = random(255);
-    g = random(255);
-    b = random(255);
-  }
-
-  // If I press space, then remember drawn places
-  if (keyIsDown(32)) {
-    drawingArr.push({
-      x,
-      y,
-      r,
-      g,
-      b
-    });
-  }
-
-  // Draw all previous rectangles
-  for (let i = 0; i < drawingArr.length; i++) {
-    fill(drawingArr[i].r, drawingArr[i].g, drawingArr[i].b);
-    rect(drawingArr[i].x, drawingArr[i].y, 60, 60);
   }
 
   // Draw the rectangle drawer at current pos
