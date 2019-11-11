@@ -1,5 +1,32 @@
 # Playing with p5.js
 
+## Table of Contents
+
+<!-- - [Playing with p5.js](#playing-with-p5js) -->
+  - [Table of Contents](#table-of-contents)
+  - [Requirements and Dependencies (Mainly for workshop helpers)](#requirements-and-dependencies-mainly-for-workshop-helpers)
+  - [Introduction to programming](#introduction-to-programming)
+    - [Variables](#variables)
+    - [Conditionals](#conditionals)
+    - [Functions](#functions)
+  - [Basic Drawing in p5.js](#basic-drawing-in-p5js)
+    - [Ellipse](#ellipse)
+    - [Rect](#rect)
+    - [Fill](#fill)
+  - [Events in p5.js](#events-in-p5js)
+    - [keyPressed](#keypressed)
+    - [key & keyCode](#key--keycode)
+    - [keyIsDown](#keyisdown)
+  - [Activity 1: Playing with the Snake Game](#activity-1-playing-with-the-snake-game)
+    - [Looking at a snake game](#looking-at-a-snake-game)
+    - [Making the snake faster](#making-the-snake-faster)
+    - [Making the playground bigger](#making-the-playground-bigger)
+    - [Changing colour of things](#changing-colour-of-things)
+  - [Activity 2: Making a drawing game](#activity-2-making-a-drawing-game)
+    - [Starting simple](#starting-simple)
+    - [Extra: Random Colours](#extra-random-colours)
+  - [References](#references)
+
 ## Requirements and Dependencies (Mainly for workshop helpers)
 
 - p5.js
@@ -32,8 +59,6 @@ So, how do we actually program? Well, we do it through programming languages, wh
 In this workshop, we will be using Javascript, along with p5.js to tell the computer to do something for us!
 
 > p5.js is a JavaScript library for creative coding, with a focus on making coding accessible and inclusive for artists, designers, educators, beginners, and anyone else!
-
-## Introduction to basic programming
 
 ### Variables
 
@@ -396,16 +421,16 @@ The `foodLocation` function creates food at a random coordinate in the drawing b
 
 ```javascript
 function keyPressed() {
-  if ((keyCode === LEFT_ARROW) && (prevKeyCode != RIGHT_ARROW)) {
+  if (keyCode === LEFT_ARROW && prevKeyCode != RIGHT_ARROW) {
     prevKeyCode = LEFT_ARROW;
     snake.setDir(-1, 0);
-  } else if ((keyCode === RIGHT_ARROW) && (prevKeyCode != LEFT_ARROW)) {
+  } else if (keyCode === RIGHT_ARROW && prevKeyCode != LEFT_ARROW) {
     prevKeyCode = RIGHT_ARROW;
     snake.setDir(1, 0);
-  } else if ((keyCode === DOWN_ARROW) && (prevKeyCode != UP_ARROW)) {
+  } else if (keyCode === DOWN_ARROW && prevKeyCode != UP_ARROW) {
     prevKeyCode = DOWN_ARROW;
     snake.setDir(0, 1);
-  } else if ((keyCode === UP_ARROW) && (prevKeyCode != DOWN_ARROW)) {
+  } else if (keyCode === UP_ARROW && prevKeyCode != DOWN_ARROW) {
     prevKeyCode = UP_ARROW;
     snake.setDir(0, -1);
   }
@@ -440,7 +465,71 @@ Finally, we look at the draw function, where for every frame we refresh the boar
 
 We won't be looking at what is in the `snake.js` file, but feel free to look at the file and try to understand or research the `Snake` class.
 
-### Changing things in the snake game
+### Making the snake faster
+
+We can also try making the snake move faster. You might have notice this particular line of code:
+
+```javascript
+function setup() {
+  createCanvas(400, 400);
+  w = floor(width / rez);
+  h = floor(height / rez);
+  frameRate(5); // <- This one here
+  snake = new Snake();
+  foodLocation();
+}
+```
+
+The `frameRate(5)` function controls how fast our game rerenders, or more simply, how fast our game refreshes and updates itself. The value of `5` indicates that currently, our game updates 5 times per second. To make our snake game faster, we can play with this value. Let's tune it up to 10 and see what happens.
+
+```javascript
+function setup() {
+  createCanvas(400, 400);
+  w = floor(width / rez);
+  h = floor(height / rez);
+  frameRate(10); // <- is not 10!
+  snake = new Snake();
+  foodLocation();
+}
+```
+
+Woah, much faster!
+
+### Making the playground bigger
+
+Now that the snake is moving faster, our original game window seems to be... a bit small. So, let's try to make it bigger!
+
+Again, you might have already notice this:
+
+```javascript
+function setup() {
+  createCanvas(400, 400); // <- This line
+  w = floor(width / rez);
+  h = floor(height / rez);
+  frameRate(10);
+  snake = new Snake();
+  foodLocation();
+}
+```
+
+As we've briefly mentioned, `createCanvas` creates a canvas for you to draw on, and in this game's case, its the place we can play on.
+
+So, to make the place bigger, we just need to change the value from `400,400` to something else!
+
+```javascript
+function setup() {
+  createCanvas(500, 500); // <- Make it bigger by 100!
+  w = floor(width / rez);
+  h = floor(height / rez);
+  frameRate(10);
+  snake = new Snake();
+  foodLocation();
+}
+```
+
+Much bigger!
+
+### Changing colour of things
 
 Now that we understand the code a little bit, let's try to make some changes to the code. Starting from the ending screen, red colour doesn't really seem to be a very pleasing colour, so let's set it to something more soothing like blue colour. We can do so via changing the red, green, blue value in the `background` function.
 
@@ -466,9 +555,7 @@ function draw() {
 }
 ```
 
-We can also change the colour of the food with similar method.
-
-Next, lets add **"END GAME"** in the middle of the game over screen so that its known to the player that the game had already ended. We can do this via the `text` function, which write a given word in the drawing board at the given coordinates, in the form `text("word to write", x, y)`. We can further use `fill` and `textSize` to change how the font is styled, but here setting `textSize` to 1 is huge enough as it is.
+We can also change the colour of the food with similar method. In that case, we change the values in the `fill` function before the `rect` function:
 
 ```javascript
 function draw() {
@@ -481,75 +568,44 @@ function draw() {
   snake.show();
 
   noStroke();
-  fill(255, 0, 0);
+  fill(130, 130, 223);
   rect(food.x, food.y, 1, 1);
 
   if (snake.endGame()) {
     print("END GAME");
     background(44, 135, 232);
-    fill(0);
-    textSize(1);
-    text("END GAME", floor(w/2), floor(h/2));
     noLoop();
   }
 }
 ```
 
-Now, try running the game again, when the snake hit the wall or itself, the game would now display a message on the drawing board.
+Now the food is in violet!
 
-Refreshing the page just to restart the game seems inconvenient, so lets adds a new function that allows us the restart the game again. We can do this first via adding a event at the `keyPressed` function like so.
-
-```javascript
-function keyPressed() {
-  if (keyCode === LEFT_ARROW && prevKeyCode != RIGHT_ARROW) {
-    prevKeyCode = LEFT_ARROW;
-    snake.setDir(-1, 0);
-  } else if (keyCode === RIGHT_ARROW && prevKeyCode != LEFT_ARROW) {
-    prevKeyCode = RIGHT_ARROW;
-    snake.setDir(1, 0);
-  } else if (keyCode === DOWN_ARROW && prevKeyCode != UP_ARROW) {
-    prevKeyCode = DOWN_ARROW;
-    snake.setDir(0, 1);
-  } else if (keyCode === UP_ARROW && prevKeyCode != DOWN_ARROW) {
-    prevKeyCode = UP_ARROW;
-    snake.setDir(0, -1);
-  }else if(keyCode === 32){
-    // 32 is the code for space
-  }
-}
-```
-
-Here, the code 32 refers to the Space bar key. Now that we added the statement to capture the event, we can add the logic that would be responsible for restarting the game.
-
-To restart the game, one simply need to reset everything to the original values, so lets us gather all the relevant variables and set them to the default value.
+What if we want the background to look nicer?
 
 ```javascript
-function keyPressed() {
-  if (keyCode === LEFT_ARROW && prevKeyCode != RIGHT_ARROW) {
-    prevKeyCode = LEFT_ARROW;
-    snake.setDir(-1, 0);
-  } else if (keyCode === RIGHT_ARROW && prevKeyCode != LEFT_ARROW) {
-    prevKeyCode = RIGHT_ARROW;
-    snake.setDir(1, 0);
-  } else if (keyCode === DOWN_ARROW && prevKeyCode != UP_ARROW) {
-    prevKeyCode = DOWN_ARROW;
-    snake.setDir(0, 1);
-  } else if (keyCode === UP_ARROW && prevKeyCode != DOWN_ARROW) {
-    prevKeyCode = UP_ARROW;
-    snake.setDir(0, -1);
-  }else if(keyCode === 32){
-    // 32 is the code for space
-    snake = new Snake();
+function draw() {
+  scale(rez);
+  background(170, 200, 100);// <- This sets the background colour and redraws
+  if (snake.eat(food)) {
     foodLocation();
-    prevKeyCode = 0;
-    loop();
+  }
+  snake.update();
+  snake.show();
+
+  noStroke();
+  fill(130, 130, 223);
+  rect(food.x, food.y, 1, 1);
+
+  if (snake.endGame()) {
+    print("END GAME");
+    background(44, 135, 232);
+    noLoop();
   }
 }
 ```
 
-As seen, we set the value of snake to a new instance of `Snake` thus reseting the state. Then, we use `foodLocation` to generate a new food location thus resetting the food. Then we set `prevKeyCode` back to 0 to allow player to use any movement with no restrictions. Last but not least, we use `loop` to start the `draw()` loop again, thus starting the game.
-
-Thus, with a few simple lines of code, we manage to make the end game experience better for players.
+Now the snake is on grass!
 
 ## Activity 2: Making a drawing game
 
