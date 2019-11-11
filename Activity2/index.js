@@ -7,6 +7,7 @@ let b = 0;
 function setup() {
   createCanvas(640, 600);
   background(255);
+  noStroke();
 }
 
 function draw(){
